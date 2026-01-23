@@ -9,7 +9,7 @@ html {
   overflow-x: hidden;
 }
 
-body{
+body {
   font-family: 'Roboto', sans-serif;
   background-color: black;
   color: white;
@@ -31,6 +31,7 @@ body{
   font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
 
 }
+
 @keyframes pushBlend {
   0% {
     transform: scale(1) translateZ(0);
@@ -55,10 +56,16 @@ body{
   animation: pushBlend 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   will-change: transform, opacity, filter;
 }
+
 /* Fade-in for changing greeting text */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .animate-fadeIn {
@@ -67,14 +74,37 @@ body{
 
 /* Wave animation */
 @keyframes wave {
-  0% { transform: rotate(0deg); }
-  10% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  30% { transform: rotate(14deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
-  60% { transform: rotate(0deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(14deg);
+  }
+
+  20% {
+    transform: rotate(-8deg);
+  }
+
+  30% {
+    transform: rotate(14deg);
+  }
+
+  40% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(10deg);
+  }
+
+  60% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 /* Wave ONCE on load */
@@ -88,4 +118,3 @@ body{
 .wave-icon:hover {
   animation: wave 1.5s ease-in-out;
 }
-

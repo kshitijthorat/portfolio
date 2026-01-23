@@ -8,6 +8,15 @@ import GradientText from '../component/GradientText'
 import TextType from '../component/TextType'
 import MoodSound from '../component/MoodSound'
 import ScrollReveal from '../component/ScrollReveal'
+import ProjectStack from '../component/ProjectStack'
+
+
+const demoItems = [
+  { link: '#', text: 'Mojave', image: 'https://picsum.photos/600/400?random=1' },
+  { link: '#', text: 'Sonoma', image: 'https://picsum.photos/600/400?random=2' },
+  { link: '#', text: 'Monterey', image: 'https://picsum.photos/600/400?random=3' },
+  { link: '#', text: 'Sequoia', image: 'https://picsum.photos/600/400?random=4' }
+];
 
 const Home = () => {
   return (
@@ -15,7 +24,7 @@ const Home = () => {
 
       {/* HERO SECTION */}
       <section className="relative w-full min-h-screen overflow-x-hidden rounded-b-3xl isolate">
-        
+
         {/* BACKGROUND */}
         <div className="absolute inset-0">
           <DarkVeil />
@@ -23,7 +32,7 @@ const Home = () => {
 
         {/* CONTENT */}
         <div className="relative max-w-7xl mx-auto px-6 pt-32">
-          
+
           <Greeting />
 
           <h1 className="mt-6 text-4xl md:text-6xl lg:text-7xl font-bold leading-tight max-w-4xl text-[#F5F7FA]">
@@ -56,14 +65,14 @@ const Home = () => {
           </p>
 
           <div className="mt-10 flex items-center gap-4">
-  <span className="text-sm uppercase tracking-widest text-gray-500">
-    Set the mood
-  </span>
+            <span className="text-sm uppercase tracking-widest text-gray-500">
+              Set the mood
+            </span>
 
-  <div className="p-3 rounded-full bg-white/10 backdrop-blur border border-white/20 hover:bg-white/20 transition pointer-events-auto">
-    <MoodSound />
-  </div>
-</div>
+            <div className="p-3 rounded-full bg-white/10 backdrop-blur border border-white/20 hover:bg-white/20 transition pointer-events-auto">
+              <MoodSound />
+            </div>
+          </div>
         </div>
 
         {/* SCROLL VELOCITY */}
@@ -77,34 +86,43 @@ const Home = () => {
           />
         </div>
         <div>
-          <GradientText
-          colors={["#5B4CF2", "#FF9FDB", "#A996F0"]}
-          animationSpeed={3}
-          showBorder={false}
-          className="custom-class ">
-          Get to Know Me
-        </GradientText>
         </div>
       </section>
 
       {/* ABOUT SECTION */}
-<section className="relative w-full py-32">
-  <div className="max-w-5xl mx-auto ">
+      <section className="relative w-full ">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col gap-14">
 
-    {/* SCRAMBLED TEXT */}
-    <ScrollReveal
-  baseOpacity={0.1}
-  enableBlur
-  baseRotation={3}
-  blurStrength={0}
->
-  When does a man die? When he is hit by a bullet? No! When he suffers a disease?
-  No! When he ate a soup made out of a poisonous mushroom?
-  No! A man dies when he is forgotten!
-</ScrollReveal>
+          {/* ABOUT HEADING */}
+          <h2 className="text-center text-3xl md:text-4xl font-semibold tracking-tight text-white">
+            <GradientText
+              colors={["#5B4CF2", "#FF9FDB", "#A996F0"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="custom-class ">
+              Get to Know Me
+            </GradientText>
+          </h2>
 
-  </div>
-</section>
+          {/* SCROLL REVEAL CONTENT */}
+          <div className="max-w-6xl mx-auto ">
+            <ScrollReveal
+              baseOpacity={0.15}
+              enableBlur
+              baseRotation={1.5}
+              blurStrength={2}
+            >
+              I'm Kshitij — coder by degree, chaos by personality.
+              If I’m not debugging, I’m either rewatching Naruto,
+              getting sniped in Call of Duty,
+              or daydreaming about cars.
+            </ScrollReveal>
+          </div>
+
+        </div>
+      </section>
+      {/* PROJECTS SECTION */}
+      <ProjectStack />
 
     </div>
   )
