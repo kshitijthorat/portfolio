@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import StaggeredMenu from '../component/StaggeredMenu'
-import MoodSound from '../component/MoodSound'
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -36,7 +35,7 @@ const Navbar = () => {
   return (
     <>
       {/* NAV UI LAYER */}
-      <div className="fixed inset-0 z-50 pointer-events-none">
+      <div className="fixed inset-0 z-50 pointer-events-none ">
         {/* STAGGERED MENU */}
         <StaggeredMenu
           position="right"

@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Syne:wght@400;700;800&family=Outfit:wght@300;400;600;700&display=swap');
 
 
 html {
@@ -19,6 +19,15 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'CONEGA', sans-serif;
 }
 
 #root {
@@ -117,4 +126,30 @@ body {
 /* Wave again on hover */
 .wave-icon:hover {
   animation: wave 1.5s ease-in-out;
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-text-animated {
+  background: linear-gradient(
+    90deg,
+    #5227FF,
+    #FF9FFC,
+    #B19EEF,
+    #5227FF
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-move 6s ease infinite;
 }
