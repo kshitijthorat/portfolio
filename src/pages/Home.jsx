@@ -9,6 +9,7 @@ import ScrollReveal from '../component/ScrollReveal'
 import CardSwap, { Card } from '../component/CardSwap'
 import DotGrid from '../component/DotGrid'
 import SkillsTimeline from '../component/SkillsTimeline'
+import Connection from '../component/Connection'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -228,6 +229,11 @@ const Home = () => {
           SKILLS TIMELINE
           ═══════════════════════════════════════════════════════ */}
       <SkillsTimeline />
+
+      {/* ═══════════════════════════════════════════════════════
+          LET'S CATCH UP
+          ═══════════════════════════════════════════════════════ */}
+      <Connection />
 
     </div>
   )

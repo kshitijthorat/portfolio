@@ -4,12 +4,17 @@ import BlurText from './BlurText'
 const Loader = ({ isExiting }) => {
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center bg-black flex-col text-white z-[9999] w-full h-full overflow-hidden ${isExiting ? 'pointer-events-none transition-opacity duration-1000' : ''}`}
-      style={isExiting ? { animation: 'pushBlend 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards' } : {}}
+      className={`fixed top-0 left-0 flex items-center justify-center bg-black flex-col text-white overflow-hidden ${isExiting ? 'pointer-events-none transition-opacity duration-1000' : ''}`}
+      style={{
+        zIndex: 99999,
+        width: '100vw',
+        height: '100vh',
+        ...(isExiting ? { animation: 'pushBlend 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards' } : {})
+      }}
     >
       <div className="absolute inset-0 w-full h-full z-0 opacity-60">
         <ColorBends
-          colors={["#3b82f6", "#8b5cf6", "#06b6d4", "#1e1b4b"]}
+          colors={["#5227FF", "#FF9FDB", "#A996F0", "#3A2A5E"]}
           rotation={0}
           speed={0.15}
           scale={1.2}
@@ -30,11 +35,11 @@ const Loader = ({ isExiting }) => {
             animateBy="words"
             direction="top"
             gradient={true}
-            gradientFrom="#60a5fa"
-            gradientTo="#a78bfa"
+            gradientFrom="#5227FF"
+            gradientTo="#FF9FDB"
             className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter"
           />
-          <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full opacity-0 animate-[fadeIn_1s_ease-out_1s_forwards]"></div>
+          <div className="h-1 w-24 bg-gradient-to-r from-[#5227FF] to-[#FF9FDB] mx-auto mt-6 rounded-full opacity-0 animate-[fadeIn_1s_ease-out_1s_forwards]"></div>
         </div>
       </div>
     </div>
