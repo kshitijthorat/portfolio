@@ -24,6 +24,16 @@ const App = () => {
     }
   }, [])
 
+  /* DYNAMIC PAGE TITLE */
+  useEffect(() => {
+    const routeTitles = {
+      '/': 'Kshitij Thorat ~ FullStack Developer',
+      '/about': 'About Me - Kshitij Thorat',
+      '/projects': 'My Project - Kshitij Thorat'
+    }
+    document.title = routeTitles[location.pathname] || 'Portfolio'
+  }, [location.pathname])
+
   return (
     <div className="w-full min-h-screen overflow-x-hidden">
       <Navbar />

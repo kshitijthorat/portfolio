@@ -24,7 +24,7 @@ const Connection = () => {
 
         {/* CTA Button */}
         <a
-          href="mailto:hello@kshitij.com"
+          href="mailto:kshitij.thorat@indiraicem.ac.in"
           className="group relative overflow-hidden px-8 py-4 rounded-full border border-[#333338] text-[#EDEDED] text-sm md:text-base font-medium hover:bg-[#A996F0] hover:border-[#5B4CF2] hover:text-white hover:shadow-[0_0_30px_rgba(91,76,242,0.4)] transition-all duration-300"
         >
           {/* Glare Sweeping Element */}

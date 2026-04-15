@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Volume2, VolumeX } from 'lucide-react'
+import { Volume2, VolumeX, Music } from 'lucide-react'
 
 const MOODS = {
   calm: { label: 'Calm', file: '/audio/calm.mp3' },
@@ -13,9 +13,11 @@ const MoodSound = () => {
   const [enabled, setEnabled] = useState(false)
   const [mood, setMood] = useState('calm')
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   /* LOAD SAVED STATE */
   useEffect(() => {
+    setMounted(true)
     const savedEnabled = localStorage.getItem('moodSoundEnabled')
     const savedMood = localStorage.getItem('moodSoundMood')
 
@@ -31,7 +33,7 @@ const MoodSound = () => {
     audioRef.current.volume = 0.12
 
     if (enabled) {
-      audioRef.current.play().catch(() => {})
+      audioRef.current.play().catch(() => { })
     } else {
       audioRef.current.pause()
     }
@@ -55,44 +57,66 @@ const MoodSound = () => {
     <>
       <audio ref={audioRef} loop />
 
-      <div ref={wrapperRef} className="relative pointer-events-auto flex items-center">
+      <div ref={wrapperRef} className="relative pointer-events-auto flex items-center group">
+
+        {/* PING EFFECT TO ATTRACT ATTENTION WHEN MUTED */}
+        {!enabled && !open && mounted && (
+          <div className="absolute inset-0 rounded-full bg-violet-500/30 animate-ping pointer-events-none" style={{ animationDuration: '2.5s' }} />
+        )}
 
         {/* DISK + CIRCULAR TEXT */}
         <button
           onClick={() => setOpen(!open)}
           className={`
             relative w-20 h-20 rounded-full
-            bg-linear-to-br from-neutral-800 to-neutral-950
-            border border-white/15
+            bg-gradient-to-br from-neutral-800 via-neutral-900 to-black
+            border ${enabled ? 'border-violet-500/50' : 'border-white/20'}
             flex items-center justify-center
-            transition
-            hover:scale-105
-            ${enabled ? 'animate-spin-slow shadow-[0_0_30px_rgba(124,58,237,0.5)]' : ''}
+            transition-all duration-300
+            hover:scale-105 hover:border-white/40
+            ${enabled ? 'animate-spin-slow shadow-[0_0_30px_rgba(124,58,237,0.5)]' : 'shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]'}
           `}
         >
-          {/* CENTER HOLE */}
-          <div className="w-2 h-2 rounded-full bg-neutral-300/80 z-10" />
+          {/* CENTER RECORD LABEL / ICON */}
+          <div className={`
+            w-7 h-7 rounded-full flex items-center justify-center z-10 
+            transition-all duration-300 border
+            ${enabled 
+              ? 'bg-violet-600 border-violet-400 shadow-[0_0_15px_rgba(124,58,237,0.8)]' 
+              : 'bg-neutral-800 border-neutral-600 group-hover:bg-neutral-700'
+            }
+          `}>
+            {enabled ? (
+              <Music size={12} className="text-white animate-pulse" />
+            ) : (
+              <VolumeX size={12} className="text-neutral-400 group-hover:text-white transition-colors" />
+            )}
+          </div>
 
           {/* CIRCULAR TEXT */}
           <svg
             viewBox="0 0 100 100"
-            className="absolute inset-0 animate-spin-very-slow"
+            className={`absolute inset-0 ${enabled ? '' : 'animate-spin-very-slow'}`}
           >
             <defs>
               <path
                 id="circlePath"
                 d="M 50, 50
-                   m -35, 0
-                   a 35,35 0 1,1 70,0
-                   a 35,35 0 1,1 -70,0"
+                   m -36, 0
+                   a 36,36 0 1,1 72,0
+                   a 36,36 0 1,1 -72,0"
               />
             </defs>
-            <text fill="rgba(255,255,255,0.35)" fontSize="14" letterSpacing="2">
+            <text fill={enabled ? "rgba(167, 139, 250, 0.8)" : "rgba(255,255,255,0.6)"} fontSize="13" letterSpacing="1.5" fontWeight="500">
               <textPath href="#circlePath">
-                MOOD • SOUND • PLAY • MOOD • SOUND • PLAY •
+                • PLAY MUSIC • CLICK ME • SET MOOD
               </textPath>
             </text>
           </svg>
+
+          {/* VINYL GROOVES */}
+          <div className="absolute inset-0 rounded-full border border-white/5 m-2 pointer-events-none" />
+          <div className="absolute inset-0 rounded-full border border-white/5 m-4 pointer-events-none" />
         </button>
 
         {/* RIGHT SIDE MENU */}
@@ -128,10 +152,9 @@ const MoodSound = () => {
                 className={`
                   w-full flex items-center justify-between
                   text-sm px-3 py-2 rounded-lg transition
-                  ${
-                    mood === key
-                      ? 'bg-white/10 text-white'
-                      : 'text-white/60 hover:bg-white/5 hover:text-white'
+                  ${mood === key
+                    ? 'bg-white/10 text-white'
+                    : 'text-white/60 hover:bg-white/5 hover:text-white'
                   }
                 `}
               >
